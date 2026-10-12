@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITM GIDA - Campus Safety & Emergency SOS Portal</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .pulse-animation {
+            box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(0.98);
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            }
+            70% {
+                transform: scale(1.03);
+                box-shadow: 0 0 0 25px rgba(239, 68, 68, 0);
+            }
+            100% {
+                transform: scale(0.98);
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-100 min-h-screen text-slate-800 flex flex-col font-sans">
+
+    <!-- Header Section -->
+    <header class="bg-indigo-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="bg-white p-1 rounded-full w-10 h-10 flex items-center justify-center text-indigo-900 font-bold">
+                    ITM
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight">ITM GIDA Gorakhpur</h1>
+                    <p class="text-xs text-indigo-200">Kalam Vision 2026 - Campus Safety Portal</p>
+                </div>
+            </div>
+            <span class="bg-emerald-500 text-white text-xs px-2.5 py-1 rounded-full flex items-center gap-1 font-semibold">
+                <span class="w-2 h-2 bg-white rounded-full animate-ping"></span> Active
+            </span>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-4xl mx-auto px-4 py-6 flex-grow w-full space-y-6">
+
+        <!-- Banner Alert -->
+        <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r shadow-sm flex items-start gap-3">
+            <i class="fa-solid fa-triangle-exclamation text-amber-600 text-xl mt-0.5"></i>
+            <p class="text-sm text-amber-800">
+                <strong>Emergency Portal:</strong> Kisi bhi aapaatkaal (emergency) ki sthiti me neeche diye gaye Red SOS Button par click karein. Aapki exact GPS location record ho jayegi.
+            </p>
+        </div>
+
+        <!-- SOS Trigger Section -->
+        <div class="bg-white rounded-2xl p-6 text-center shadow-md border border-slate-200">
+            <h2 class="text-xl font-bold text-slate-800 mb-2">Emergency Assistance Needed?</h2>
+            <p class="text-slate-500 text-sm mb-6">Button dabate hi aapki live GPS Location fetch ho jayegi</p>
+            
+            <button id="sosBtn" onclick="triggerSOS()" class="pulse-animation bg-red-600 hover:bg-red-700 text-white text-2xl font-black py-8 px-10 rounded-full shadow-2xl transition transform active:scale-95 flex flex-col items-center justify-center mx-auto border-4 border-red-200">
+                <i class="fa-solid fa-bell text-4xl mb-2 animate-bounce"></i>
+                <span>TRIGGER SOS</span>
+                <span class="text-xs font-normal opacity-80 mt-1">Click to Alert Campus Security</span>
+            </button>
+
+            <!-- Status Message Box -->
+            <div id="statusBox" class="mt-6 hidden p-4 rounded-lg text-sm text-left transition-all"></div>
+        </div>
+
+        <!-- Quick Emergency Contacts Section -->
+        <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200">
+            <h3 class="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-phone-volume text-indigo-600"></i> Campus Emergency Contacts
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                
+                <!-- Contact Item 1 -->
+                <div class="flex justify-between items-center p-3 bg-slate-50 rounded-xl border border-slate-100 hover:bg-slate-100 transition">
+                    <div>
+                        <p class="font-bold text-slate-700 text-sm">Main Campus Security Desk</p>
+                        <p class="text-xs text-slate-500">24x7 Security Control Room</p>
+                    </div>
+                    <a href="tel:+919876543210" class="bg-indigo-600 text-white px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1 hover:bg-indigo-700">
+                        <i class="fa-solid fa-phone"></i> Call Now
+                    </a>
+                </div>
+
+                <!-- Contact Item 2 -->
+                <div class="flex justify-between items-center p-3 bg-slate-50 rounded-xl border border-slate-100 hover:bg-slate-100 transition">
+                    <div>
+                        <p class="font-bold text-slate-700 text-sm">Anti-Ragging / Women Cell</p>
+                        <p class="text-xs text-slate-500">Student Safety Desk</p>
+                    </div>
+                    <a href="tel:+919876543211" class="bg-indigo-600 text-white px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1 hover:bg-indigo-700">
+                        <i class="fa-solid fa-phone"></i> Call Now
+                    </a>
+                </div>
+
+                <!-- Contact Item 3 -->
+                <div class="flex justify-between items-center p-3 bg-slate-50 rounded-xl border border-slate-100 hover:bg-slate-100 transition">
+                    <div>
+                        <p class="font-bold text-slate-700 text-sm">Medical Room / Dispensary</p>
+                        <p class="text-xs text-slate-500">First-Aid & Ambulance Service</p>
+                    </div>
+                    <a href="tel:+919876543212" class="bg-indigo-600 text-white px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1 hover:bg-indigo-700">
+                        <i class="fa-solid fa-phone"></i> Call Now
+                    </a>
+                </div>
+
+                <!-- Contact Item 4 -->
+                <div class="flex justify-between items-center p-3 bg-slate-50 rounded-xl border border-slate-100 hover:bg-slate-100 transition">
+                    <div>
+                        <p class="font-bold text-slate-700 text-sm">Gorakhpur GIDA Police Desk</p>
+                        <p class="text-xs text-slate-500">Local Police Station Hotline</p>
+                    </div>
+                    <a href="tel:112" class="bg-red-600 text-white px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1 hover:bg-red-700">
+                        <i class="fa-solid fa-shield-halved"></i> Call 112
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Emergency Category Quick Report -->
+        <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200">
+            <h3 class="text-lg font-bold text-slate-800 mb-4">Quick Incident Type</h3>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <button onclick="reportType('Medical Emergency')" class="p-3 bg-red-50 hover:bg-red-100 text-red-700 rounded-xl text-center text-xs font-bold border border-red-200 transition flex flex-col items-center gap-2">
+                    <i class="fa-solid fa-user-doctor text-xl"></i>
+                    <span>Medical</span>
+                </button>
+                <button onclick="reportType('Ragging or Bullying')" class="p-3 bg-amber-50 hover:bg-amber-100 text-amber-700 rounded-xl text-center text-xs font-bold border border-amber-200 transition flex flex-col items-center gap-2">
+                    <i class="fa-solid fa-hand-fist text-xl"></i>
+                    <span>Ragging / Threat</span>
+                </button>
+                <button onclick="reportType('Fire / Electrical Hazard')" class="p-3 bg-orange-50 hover:bg-orange-100 text-orange-700 rounded-xl text-center text-xs font-bold border border-orange-200 transition flex flex-col items-center gap-2">
+                    <i class="fa-solid fa-fire text-xl"></i>
+                    <span>Fire Hazard</span>
+                </button>
+                <button onclick="reportType('General Incident')" class="p-3 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-xl text-center text-xs font-bold border border-blue-200 transition flex flex-col items-center gap-2">
+                    <i class="fa-solid fa-circle-info text-xl"></i>
+                    <span>Other Help</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Emergency Siren Sound Toggle -->
+        <div class="bg-indigo-50 border border-indigo-200 rounded-2xl p-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <i class="fa-solid fa-volume-high text-indigo-600 text-xl"></i>
+                <div>
+                    <p class="font-bold text-indigo-900 text-sm">Emergency Audio Siren</p>
+                    <p class="text-xs text-indigo-700">Presentation me demo dikhane ke liye siren play karein</p>
+                </div>
+            </div>
+            <button id="sirenBtn" onclick="toggleSiren()" class="bg-indigo-600 text-white text-xs px-3 py-2 rounded-lg font-semibold hover:bg-indigo-700">
+                Play Sound
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 text-slate-400 text-xs py-4 text-center mt-auto">
+        <p>Developed for Kalam Vision 2026 | ITM GIDA Gorakhpur</p>
+        <p class="text-slate-500 mt-1">Designed by BCA First-Year Team</p>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        let selectedCategory = "General Emergency";
+        let sirenAudio = new Audio('https://www.soundjay.com/buttons/sounds/beep-07a.mp3');
+
+        function reportType(type) {
+            selectedCategory = type;
+            alert("Selected Incident Category: " + type + "\nAb 'TRIGGER SOS' button par click karein.");
+        }
+
+        function triggerSOS() {
+            const statusBox = document.getElementById("statusBox");
+            statusBox.classList.remove("hidden");
+            statusBox.className = "mt-6 p-4 rounded-lg text-sm bg-blue-50 text-blue-800 border border-blue-200";
+            statusBox.innerHTML = "<i class='fa-solid fa-spinner animate-spin'></i> Location fetch ki ja rahi hai, kripya wait karein...";
+
+            // Automatic handling: If opened as local offline file (file:///)
+            if (window.location.protocol === 'file:') {
+                setTimeout(() => {
+                    displayLocation(26.7412, 83.2845, "ITM GIDA Gorakhpur Campus (Offline Simulation)");
+                }, 800);
+            } 
+            // If opened via web server / HTTPS
+            else if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        displayLocation(position.coords.latitude, position.coords.longitude, "Live GPS Coordinates");
+                    },
+                    (error) => {
+                        // Fallback on error
+                        displayLocation(26.7412, 83.2845, "ITM GIDA Gorakhpur Campus (Fallback)");
+                    },
+                    { enableHighAccuracy: true, timeout: 5000 }
+                );
+            } else {
+                displayLocation(26.7412, 83.2845, "ITM GIDA Gorakhpur Campus");
+            }
+        }
+
+        function displayLocation(lat, lng, locationType) {
+            const mapUrl = `https://www.google.com/maps?q=${lat},${lng}`;
+            const time = new Date().toLocaleTimeString();
+
+            const statusBox = document.getElementById("statusBox");
+            statusBox.className = "mt-6 p-4 rounded-lg text-sm bg-emerald-50 text-emerald-900 border border-emerald-200 space-y-2";
+            statusBox.innerHTML = `
+                <div class="flex items-center gap-2 font-bold text-emerald-700 text-base">
+                    <i class="fa-solid fa-circle-check"></i> SOS ALERT SENT SUCCESSFULLY!
+                </div>
+                <p><strong>Incident Category:</strong> ${selectedCategory}</p>
+                <p><strong>Time:</strong> ${time}</p>
+                <p><strong>Location Mode:</strong> ${locationType}</p>
+                <p><strong>GPS Coordinates:</strong> ${lat}, ${lng}</p>
+                <div class="pt-2">
+                    <a href="${mapUrl}" target="_blank" class="inline-flex items-center gap-2 bg-emerald-600 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-emerald-700 shadow">
+                        <i class="fa-solid fa-map-location-dot"></i> Open Live Location in Google Maps
+                    </a>
+                </div>
+            `;
+        }
+
+        let isPlaying = false;
+        function toggleSiren() {
+            const sirenBtn = document.getElementById("sirenBtn");
+            if (!isPlaying) {
+                sirenAudio.loop = true;
+                sirenAudio.play();
+                isPlaying = true;
+                sirenBtn.innerText = "Stop Sound";
+                sirenBtn.className = "bg-red-600 text-white text-xs px-3 py-2 rounded-lg font-semibold hover:bg-red-700";
+            } else {
+                sirenAudio.pause();
+                sirenAudio.currentTime = 0;
+                isPlaying = false;
+                sirenBtn.innerText = "Play Sound";
+                sirenBtn.className = "bg-indigo-600 text-white text-xs px-3 py-2 rounded-lg font-semibold hover:bg-indigo-700";
+            }
+        }
+    </script>
+</body>
+</html>
